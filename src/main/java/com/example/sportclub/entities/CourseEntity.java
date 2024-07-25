@@ -7,7 +7,7 @@ import lombok.Data;
 @Entity
 @Table(name = "course_table")
 @Data
-public class Course {
+public class CourseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,5 +26,5 @@ public class Course {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "course_bundle_id")
-    CourseBundle course_bundle_table;
+    CourseBundleEntity course_bundle_table;
 }

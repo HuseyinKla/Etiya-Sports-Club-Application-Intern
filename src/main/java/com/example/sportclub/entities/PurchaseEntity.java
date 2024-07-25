@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 @Entity
 @Table(name = "purchase_table")
 @Data
-public class Purchase {
+public class PurchaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,10 +23,10 @@ public class Purchase {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    User user_table;
+    UserEntity user_Entity_table;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "course_bundle_id")
-    CourseBundle course_bundle_table;
+    CourseBundleEntity course_bundle_table;
 
 }

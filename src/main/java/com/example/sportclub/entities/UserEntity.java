@@ -1,3 +1,4 @@
+
 package com.example.sportclub.entities;
 
 
@@ -9,7 +10,7 @@ import java.sql.Timestamp;
 @Entity
 @Table(name = "user_table")
 @Data
-public class User {
+public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,9 +35,9 @@ public class User {
 
 
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_role_id")
-    Role role_table;
+    RoleEntity user_role_id;
 
 
 

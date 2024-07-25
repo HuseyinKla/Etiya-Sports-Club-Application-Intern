@@ -7,7 +7,7 @@ import lombok.Data;
 @Entity
 @Table(name = "course_progress_table")
 @Data
-public class CourseProgress {
+public class CourseProgressEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,10 +23,10 @@ public class CourseProgress {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "course_bundle_id")
-    CourseBundle course_bundle_table;
+    CourseBundleEntity course_bundle_table;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    User user_table;
+    UserEntity user_Entity_table;
 
 }

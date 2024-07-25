@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 @Entity
 @Table(name = "log_table")
 @Data
-public class Log {
+public class LogEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,6 +26,6 @@ public class Log {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    User user_table;
+    UserEntity user_Entity_table;
 
 }

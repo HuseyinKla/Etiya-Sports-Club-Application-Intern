@@ -7,7 +7,7 @@ import lombok.Data;
 @Entity
 @Table(name = "course_bundle_table")
 @Data
-public class CourseBundle {
+public class CourseBundleEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
