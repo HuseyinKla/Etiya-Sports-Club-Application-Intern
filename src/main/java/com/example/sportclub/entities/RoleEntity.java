@@ -9,9 +9,15 @@ import lombok.Data;
 @Data
 public class RoleEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    /*@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_role_id")
+    private Long user_role_id;*/
+
+    //her entity için unique yap
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "project_seq")
+    @SequenceGenerator(name = "project_seq", sequenceName = "project_seq", allocationSize = 1)
     private Long user_role_id;
 
     @Column(nullable = false)

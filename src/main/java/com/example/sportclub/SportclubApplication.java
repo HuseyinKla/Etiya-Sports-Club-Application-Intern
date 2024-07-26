@@ -10,6 +10,7 @@ public class SportclubApplication {
 
 
 	public static void main(String[] args) throws Exception {
+		//BUNDLES POST API EKLE
 		SpringApplication.run(SportclubApplication.class, args);
 	}
 

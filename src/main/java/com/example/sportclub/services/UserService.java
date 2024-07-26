@@ -20,7 +20,7 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public UserEntity saveUser(UserEntity newUser) {
+    public UserEntity createNewUser(UserEntity newUser) {
         return userRepository.save(newUser);
     }
 
@@ -37,12 +37,15 @@ public class UserService {
             foundedUser.setUser_password(newUser.getUser_password());
             userRepository.save(foundedUser);
             return foundedUser;
-        }else{
-            return null;
         }
+        return null;
     }
 
     public void deleteUser(Long userId) {
         userRepository.deleteById(userId);
+    }
+
+    public void deleteAllUser() {
+        userRepository.deleteAll();
     }
 }
