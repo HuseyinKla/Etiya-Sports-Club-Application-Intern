@@ -14,6 +14,8 @@ public class CourseBundleEntity {
     @Column(name = "course_bundle_id")
     private Long course_bundle_id;
 
+
+
     @Column(nullable = false)
     private String bundle_name;
 

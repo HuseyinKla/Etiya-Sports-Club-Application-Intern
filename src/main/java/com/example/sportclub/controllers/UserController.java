@@ -2,12 +2,10 @@ package com.example.sportclub.controllers;
 
 
 import com.example.sportclub.entities.UserEntity;
-import com.example.sportclub.repos.IUserRepository;
 import com.example.sportclub.services.UserService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
@@ -26,23 +24,28 @@ public class UserController {
 
     @PostMapping
     public  UserEntity createNewUser(@RequestBody UserEntity newUser){
-        return userService.saveUser(newUser);
+        return userService.createNewUser(newUser);
     }
 
     @GetMapping("/{userId}")
-    public UserEntity getOneUser(@PathVariable Long userId){
+    public UserEntity findOneUser(@PathVariable Long userId){
         return userService.findOneUser(userId);
     }
 
 
     @PutMapping("/{userId}")
-    public UserEntity putOneUser(@PathVariable Long userId, @RequestBody UserEntity newUser){
+    public UserEntity updateUser(@PathVariable Long userId, @RequestBody UserEntity newUser){
         return userService.updateUser(userId, newUser);
     }
 
     @DeleteMapping("/{userId}")
-    public void deleteOneUser(@PathVariable Long userId){
+    public void deleteUser(@PathVariable Long userId){
         userService.deleteUser(userId);
+    }
+
+    @DeleteMapping("/deleteAll")
+    public void  deleteAllUser(){
+        userService.deleteAllUser();
     }
 
 

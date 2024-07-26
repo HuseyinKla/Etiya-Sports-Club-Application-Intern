@@ -12,10 +12,18 @@ import java.sql.Timestamp;
 @Data
 public class UserEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    /*@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id")
+    private Long user_id;*/
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "userSeq")
+    @SequenceGenerator(name = "userSeq", sequenceName = "userSeq", allocationSize = 1)
     private Long user_id;
+
+
 
     @Column(nullable = false)
     private String user_name;
