@@ -11,20 +11,12 @@ public class CourseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "course_id")
     private Long course_id;
 
-    @Column(nullable = false)
-    private String course_name;
-
-    @Column(nullable = false, columnDefinition = "text")
-    private String course_description;
-
-
-
-
-
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "course_bundle_id")
-    CourseBundleEntity course_bundle_table;
+    private CourseBundleEntity courseBundle;
+
+    private String course_name;
+    private String course_description;
 }

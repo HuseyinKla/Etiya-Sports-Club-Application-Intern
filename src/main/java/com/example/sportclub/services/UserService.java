@@ -1,7 +1,12 @@
 package com.example.sportclub.services;
 
+import com.example.sportclub.entities.CourseBundleEntity;
+import com.example.sportclub.entities.RoleEntity;
 import com.example.sportclub.entities.UserEntity;
+import com.example.sportclub.repos.ICourseBundleRepository;
+import com.example.sportclub.repos.IRoleRepository;
 import com.example.sportclub.repos.IUserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,7 +15,14 @@ import java.util.Optional;
 @Service
 public class UserService {
     //add if coming data is not fit
-    IUserRepository userRepository;
+    @Autowired
+    private IUserRepository userRepository;
+    @Autowired
+    private ICourseBundleRepository courseBundleRepository;
+    @Autowired
+    private IRoleRepository roleRepository;
+
+
 
     public UserService(IUserRepository userRepository){
         this.userRepository = userRepository;
@@ -21,6 +33,14 @@ public class UserService {
     }
 
     public UserEntity createNewUser(UserEntity newUser) {
+        CourseBundleEntity courseBundleEntity = courseBundleRepository.findById(newUser.getCourseBundle().getCourse_bundle_id())
+                .orElseThrow(() -> null);
+        RoleEntity roleEntity = roleRepository.findById(newUser.getRole().getUser_role_id())
+                .orElseThrow(() -> null);
+
+
+        newUser.setCourseBundle(courseBundleEntity);
+        newUser.setRole(roleEntity);
         return userRepository.save(newUser);
     }
 

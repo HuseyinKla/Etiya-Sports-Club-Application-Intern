@@ -13,20 +13,20 @@ public class PurchaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "purchase_id")
     private Long purchase_id;
 
-    @Column(nullable = false)
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
+
+    @ManyToOne
+    @JoinColumn(name = "course_bundle_id")
+    private CourseBundleEntity courseBundle;
+
+
+
     private Timestamp purchase_date;
 
-
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    UserEntity user_Entity_table;
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "course_bundle_id")
-    CourseBundleEntity course_bundle_table;
 
 }

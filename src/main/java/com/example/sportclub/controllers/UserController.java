@@ -3,6 +3,10 @@ package com.example.sportclub.controllers;
 
 import com.example.sportclub.entities.UserEntity;
 import com.example.sportclub.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,6 +15,7 @@ import java.util.List;
 @RequestMapping("/users")
 public class UserController {
 
+    @Autowired
     private UserService userService;
 
     public UserController(UserService userService){
@@ -23,8 +28,9 @@ public class UserController {
     }
 
     @PostMapping
-    public  UserEntity createNewUser(@RequestBody UserEntity newUser){
-        return userService.createNewUser(newUser);
+    public ResponseEntity<UserEntity> createNewUser(@RequestBody UserEntity newUser){
+        UserEntity savedUser = userService.createNewUser(newUser);
+        return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
     }
 
     @GetMapping("/{userId}")

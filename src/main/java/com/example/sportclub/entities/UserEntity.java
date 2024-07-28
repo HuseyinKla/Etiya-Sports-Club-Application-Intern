@@ -19,34 +19,22 @@ public class UserEntity {
     private Long user_id;*/
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "userSeq")
-    @SequenceGenerator(name = "userSeq", sequenceName = "userSeq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long user_id;
 
+    @ManyToOne
+    @JoinColumn(name = "course_bundle_id", nullable = false)
+    private CourseBundleEntity courseBundle;
+
+    @ManyToOne
+    @JoinColumn(name = "user_role_id", nullable = false)
+    private RoleEntity role;
 
 
-    @Column(nullable = false)
     private String user_name;
-
-    @Column(nullable = false)
     private String user_mail;
-
-    @Column(nullable = false)
     private String user_password;
-
-    @Column(nullable = false)
-    private Long course_bundle_id;
-
-    @Column(nullable = false)
     private Timestamp created_at;
-
-
-
-
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_role_id")
-    RoleEntity user_role_id;
-
 
 
 }

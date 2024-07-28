@@ -13,19 +13,14 @@ public class LogEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "log_id")
     private Long log_id;
 
-    @Column(nullable = false)
-    private Timestamp log_date;
 
-    @Column(nullable = false)
-    private String action;
-
-
-
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "user_id")
-    UserEntity user_Entity_table;
+    private UserEntity user;
 
+
+    private Timestamp log_date;
+    private String action;
 }
