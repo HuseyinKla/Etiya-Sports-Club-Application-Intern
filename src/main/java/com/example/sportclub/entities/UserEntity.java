@@ -22,9 +22,9 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long user_id;
 
-    @ManyToOne
+    /*@ManyToOne
     @JoinColumn(name = "course_bundle_id", nullable = false)
-    private CourseBundleEntity courseBundle;
+    private CourseBundleEntity courseBundle;*/
 
     @ManyToOne
     @JoinColumn(name = "user_role_id", nullable = false)

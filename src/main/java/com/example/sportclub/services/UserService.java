@@ -21,11 +21,12 @@ public class UserService {
     private ICourseBundleRepository courseBundleRepository;
     @Autowired
     private IRoleRepository roleRepository;
+    private RoleService roleService;
 
 
-
-    public UserService(IUserRepository userRepository){
+    public UserService(IUserRepository userRepository, RoleService roleService){
         this.userRepository = userRepository;
+        this.roleService = roleService;
     }
 
     public List<UserEntity> getAllUsers() {
@@ -33,14 +34,7 @@ public class UserService {
     }
 
     public UserEntity createNewUser(UserEntity newUser) {
-        CourseBundleEntity courseBundleEntity = courseBundleRepository.findById(newUser.getCourseBundle().getCourse_bundle_id())
-                .orElseThrow(() -> null);
-        RoleEntity roleEntity = roleRepository.findById(newUser.getRole().getUser_role_id())
-                .orElseThrow(() -> null);
-
-
-        newUser.setCourseBundle(courseBundleEntity);
-        newUser.setRole(roleEntity);
+        RoleEntity role = roleService.getOneRole(newUser.getUser_id());
         return userRepository.save(newUser);
     }
 

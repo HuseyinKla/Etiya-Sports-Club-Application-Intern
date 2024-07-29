@@ -11,7 +11,7 @@ import java.util.List;
 public class LogService {
 
 
-    ILogRepository logRepository;
+    private ILogRepository logRepository;
 
     public LogService(ILogRepository logRepository){
         this.logRepository = logRepository;

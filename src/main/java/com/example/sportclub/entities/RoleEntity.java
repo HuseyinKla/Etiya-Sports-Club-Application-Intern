@@ -22,10 +22,20 @@ public class RoleEntity {
 
     private int user_role;
     private String role_name;
-    private boolean is_active;
 
-    @OneToMany(mappedBy = "role")
-    private Set<UserEntity> users;
+
+    @Enumerated(EnumType.ORDINAL)
+    private activity_status activity_status;
+
+    public enum activity_status {
+        DEACTIVE,
+        ACTIVE
+    }
+
+
+
+    /*@OneToMany(mappedBy = "role")
+    private Set<UserEntity> users;*/
 
 
 

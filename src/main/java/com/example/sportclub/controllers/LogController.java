@@ -2,6 +2,7 @@ package com.example.sportclub.controllers;
 
 import com.example.sportclub.entities.LogEntity;
 import com.example.sportclub.services.LogService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,7 +11,8 @@ import java.util.List;
 @RequestMapping("/logs")
 public class LogController {
 
-    LogService logService;
+    @Autowired
+    private LogService logService;
 
     public LogController(LogService logService){
         this.logService = logService;

@@ -35,4 +35,8 @@ public class CourseBundleService {
         }
         return null;
     }
+
+    public CourseBundleEntity createNewBundle(CourseBundleEntity newBundle) {
+        return courseBundleRepository.save(newBundle);
+    }
 }

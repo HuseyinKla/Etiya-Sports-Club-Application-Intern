@@ -2,6 +2,7 @@ package com.example.sportclub.services;
 
 import com.example.sportclub.entities.CourseEntity;
 import com.example.sportclub.repos.ICourseRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,7 +10,8 @@ import java.util.List;
 @Service
 public class CourseService {
 
-    ICourseRepository courseRepository;
+    @Autowired
+    private ICourseRepository courseRepository;
 
     public CourseService(ICourseRepository courseRepository){
         this.courseRepository = courseRepository;

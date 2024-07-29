@@ -22,8 +22,8 @@ public class CourseProgressController {
     }
 
     @GetMapping("/{progressId}")
-    public CourseProgressEntity getOneProgress(@PathVariable Long progresId){
-        return courseProgressService.getOneProgress(progresId);
+    public CourseProgressEntity getOneProgress(@PathVariable Long progressId){
+        return courseProgressService.getOneProgress(progressId);
     }
 
     @PostMapping

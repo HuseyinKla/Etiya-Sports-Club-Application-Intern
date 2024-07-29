@@ -1,12 +1,10 @@
 package com.example.sportclub.controllers;
 
 
+import com.example.sportclub.dtos.UserCreateDto;
 import com.example.sportclub.entities.UserEntity;
 import com.example.sportclub.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,9 +26,8 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserEntity> createNewUser(@RequestBody UserEntity newUser){
-        UserEntity savedUser = userService.createNewUser(newUser);
-        return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
+    public UserEntity createNewUser(@RequestBody UserEntity newUser){
+        return userService.createNewUser(newUser);
     }
 
     @GetMapping("/{userId}")

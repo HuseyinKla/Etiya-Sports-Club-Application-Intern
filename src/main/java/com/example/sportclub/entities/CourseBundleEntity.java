@@ -15,8 +15,12 @@ public class CourseBundleEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long course_bundle_id;
 
-    @OneToMany(mappedBy = "courseBundle")
-    private Set<UserEntity> users;
+    /*@OneToMany(mappedBy = "courseBundle")
+    private Set<UserEntity> users;*/
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private UserEntity user;
 
 
     private String bundle_name;
