@@ -6,6 +6,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "user_table")
@@ -26,7 +28,7 @@ public class UserEntity {
     @JoinColumn(name = "course_bundle_id", nullable = false)
     private CourseBundleEntity courseBundle;*/
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "user_role_id", nullable = false)
     private RoleEntity role;
 
@@ -35,6 +37,9 @@ public class UserEntity {
     private String user_mail;
     private String user_password;
     private Timestamp created_at;
+
+    /*@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<LogEntity> logs = new ArrayList<LogEntity>();*/
 
 
 }

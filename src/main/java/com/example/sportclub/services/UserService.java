@@ -1,8 +1,10 @@
 package com.example.sportclub.services;
 
+import com.example.sportclub.dtos.UserGetDto;
 import com.example.sportclub.entities.CourseBundleEntity;
 import com.example.sportclub.entities.RoleEntity;
 import com.example.sportclub.entities.UserEntity;
+import com.example.sportclub.mappers.IUserGetMapper;
 import com.example.sportclub.repos.ICourseBundleRepository;
 import com.example.sportclub.repos.IRoleRepository;
 import com.example.sportclub.repos.IUserRepository;
@@ -29,19 +31,36 @@ public class UserService {
         this.roleService = roleService;
     }
 
-    public List<UserEntity> getAllUsers() {
-        return userRepository.findAll();
+    public List<UserGetDto> getAllUsersDto() {
+        /*List<UserEntity> users = userRepository.findAll();
+        List<UserGetDto> toSaves = IUserGetMapper.INSTANCE.userToUsersGetDto(users);
+        toSaves.stream().map( save -> users.stream().map(user -> user.getRole().getUser_role_id()));
+        return toSaves;*/
+        List<UserEntity> users = userRepository.findAll();
+        return IUserGetMapper.INSTANCE.userToUsersGetDto(users);
     }
 
+
+
+    public UserGetDto findOneUserDto(Long userId) {
+        /*UserEntity user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+        UserGetDto toSave = IUserGetMapper.INSTANCE.userToUserGetDto(user);
+        toSave.setUser_role_id(user.getRole().getUser_role_id());
+        return toSave;*/
+
+        Optional<UserEntity> userOptional = userRepository.findById(userId);
+        if (userOptional.isPresent()){
+            return IUserGetMapper.INSTANCE.userToUserGetDto(userOptional.get());
+        }else{
+            throw new RuntimeException("User not found");
+        }
+    }
+
+
     public UserEntity createNewUser(UserEntity newUser) {
-        RoleEntity role = roleService.getOneRole(newUser.getUser_id());
         return userRepository.save(newUser);
     }
 
-    public UserEntity findOneUser(Long userId) {
-        //custom exception if userId DID NOT EXIST
-        return userRepository.findById(userId).orElse(null);
-    }
 
     public UserEntity updateUser(Long userId, UserEntity newUser) {
         Optional<UserEntity> user = userRepository.findById(userId);

@@ -1,7 +1,9 @@
 package com.example.sportclub.controllers;
 
+import com.example.sportclub.dtos.RoleGetDto;
 import com.example.sportclub.entities.RoleEntity;
 import com.example.sportclub.services.RoleService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,6 +12,7 @@ import java.util.List;
 @RequestMapping("/roles")
 public class RoleController {
 
+    @Autowired
     private RoleService roleService;
 
 
@@ -18,14 +21,18 @@ public class RoleController {
     }
 
     @GetMapping
-    public List<RoleEntity> getAllRoles(){
-        return roleService.getAllRoles();
+    public List<RoleGetDto> getAllRolesDto(){
+        return roleService.getAllRolesDto();
     }
 
+
+
     @GetMapping("/{roleId}")
-    public RoleEntity getOneRole(@PathVariable Long roleId){
-        return roleService.getOneRole(roleId);
+    public RoleGetDto getOneRoleDto(@PathVariable Long roleId){
+        return roleService.getOneRoleDto(roleId);
     }
+
+
 
     @PutMapping("/{roleId}")
     public RoleEntity updateRole(@PathVariable Long roleId, @RequestBody RoleEntity newRole){

@@ -16,7 +16,7 @@ public class LogEntity {
     private Long log_id;
 
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private UserEntity user;
 

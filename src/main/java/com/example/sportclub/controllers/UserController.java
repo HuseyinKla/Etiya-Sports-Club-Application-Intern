@@ -2,6 +2,7 @@ package com.example.sportclub.controllers;
 
 
 import com.example.sportclub.dtos.UserCreateDto;
+import com.example.sportclub.dtos.UserGetDto;
 import com.example.sportclub.entities.UserEntity;
 import com.example.sportclub.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,8 @@ public class UserController {
     }
 
     @GetMapping
-    public List<UserEntity> getAllUsers(){
-        return userService.getAllUsers();
+    public List<UserGetDto> getAllUsersDto(){
+        return userService.getAllUsersDto();
     }
 
     @PostMapping
@@ -31,8 +32,8 @@ public class UserController {
     }
 
     @GetMapping("/{userId}")
-    public UserEntity findOneUser(@PathVariable Long userId){
-        return userService.findOneUser(userId);
+    public UserGetDto findOneUserDto(@PathVariable Long userId){
+        return userService.findOneUserDto(userId);
     }
 
 
