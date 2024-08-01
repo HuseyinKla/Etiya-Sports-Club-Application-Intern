@@ -1,6 +1,8 @@
 package com.example.sportclub.services;
 
+import com.example.sportclub.dtos.CourseProgressDto;
 import com.example.sportclub.entities.CourseProgressEntity;
+import com.example.sportclub.mappers.IProgressGetMapper;
 import com.example.sportclub.repos.ICourseProgressRepository;
 import org.springframework.stereotype.Service;
 
@@ -18,13 +20,19 @@ public class CourseProgressService {
 
 
 
-    public List<CourseProgressEntity> getAllProgress() {
-        return courseProgressRepository.findAll();
+    public List<CourseProgressDto> getAllProgressDto() {
+        List<CourseProgressEntity> progresses = courseProgressRepository.findAll();
+        return IProgressGetMapper.INSTANCE.progresstoGetAllProgressDto(progresses);
     }
 
 
-    public CourseProgressEntity getOneProgress(Long progressId) {
-        return courseProgressRepository.findById(progressId).orElse(null);
+    public CourseProgressDto CourseProgressDto(Long progressId) {
+        Optional<CourseProgressEntity> optionalProgress = courseProgressRepository.findById(progressId);
+        if(optionalProgress.isPresent()){
+            return IProgressGetMapper.INSTANCE.progresstoGetProgressDto(optionalProgress.get());
+        }else{
+            throw new RuntimeException("Progress not found");
+        }
     }
 
     public CourseProgressEntity createProgress(CourseProgressEntity newProgress) {

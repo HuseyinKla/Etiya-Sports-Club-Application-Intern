@@ -1,6 +1,7 @@
 package com.example.sportclub.controllers;
 
 
+import com.example.sportclub.dtos.PurchaseGetDto;
 import com.example.sportclub.entities.PurchaseEntity;
 import com.example.sportclub.services.PurchaseService;
 import org.springframework.web.bind.annotation.*;
@@ -18,13 +19,13 @@ public class PurchaseController {
     }
 
     @GetMapping
-    public List<PurchaseEntity> getAllPurchases(){
-        return purchaseService.getAllPurchases();
+    public List<PurchaseGetDto> getAllPurchasesDto(){
+        return purchaseService.getAllPurchasesDto();
     }
 
     @GetMapping("/{purchaseId}")
-    public PurchaseEntity findOnePurchase(@PathVariable Long purchaseId){
-        return purchaseService.findOnePurchase(purchaseId);
+    public PurchaseGetDto findOnePurchaseDto(@PathVariable Long purchaseId){
+        return purchaseService.findOnePurchaseDto(purchaseId);
     }
 
     @PostMapping

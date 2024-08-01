@@ -1,6 +1,8 @@
 package com.example.sportclub.services;
 
+import com.example.sportclub.dtos.CourseBundleDto;
 import com.example.sportclub.entities.CourseBundleEntity;
+import com.example.sportclub.mappers.IBundleGetMapper;
 import com.example.sportclub.repos.ICourseBundleRepository;
 import org.springframework.stereotype.Service;
 
@@ -16,12 +18,21 @@ public class CourseBundleService {
         this.courseBundleRepository = courseBundleRepository;
     }
 
-    public List<CourseBundleEntity> getAllBundles() {
-        return courseBundleRepository.findAll();
+    public List<CourseBundleDto> getAllBundlesDto() {
+        List<CourseBundleEntity> bundles = courseBundleRepository.findAll();
+        return IBundleGetMapper.INSTANCE.bundlestoBundlesGetDto(bundles);
+
+
     }
 
-    public CourseBundleEntity getOnebundle(Long bundleId) {
-        return courseBundleRepository.findById(bundleId).orElse(null);
+    public CourseBundleDto getOneBundleDto(Long bundleId) {
+        Optional<CourseBundleEntity> bundleOptional = courseBundleRepository.findById(bundleId);
+        if (bundleOptional.isPresent()){
+            return IBundleGetMapper.INSTANCE.bundleToBundleDto(bundleOptional.get());
+        }else{
+            throw new RuntimeException("Bundle not found");
+        }
+
     }
 
 

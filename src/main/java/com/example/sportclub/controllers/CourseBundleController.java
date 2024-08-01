@@ -1,6 +1,7 @@
 package com.example.sportclub.controllers;
 
 
+import com.example.sportclub.dtos.CourseBundleDto;
 import com.example.sportclub.entities.CourseBundleEntity;
 import com.example.sportclub.entities.RoleEntity;
 import com.example.sportclub.entities.UserEntity;
@@ -22,13 +23,13 @@ public class CourseBundleController {
     }
 
     @GetMapping
-    public List<CourseBundleEntity> getAllBundles(){
-        return courseBundleService.getAllBundles();
+    public List<CourseBundleDto> getAllBundlesDto(){
+        return courseBundleService.getAllBundlesDto();
     }
 
     @GetMapping("/{bundleId}")
-    public CourseBundleEntity getOneBundle(@PathVariable Long bundleId){
-        return courseBundleService.getOnebundle(bundleId);
+    public CourseBundleDto getOneBundleDto(@PathVariable Long bundleId){
+        return courseBundleService.getOneBundleDto(bundleId);
     }
 
     @PostMapping

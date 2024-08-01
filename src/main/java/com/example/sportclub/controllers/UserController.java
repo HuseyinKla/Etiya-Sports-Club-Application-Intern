@@ -1,7 +1,6 @@
 package com.example.sportclub.controllers;
 
 
-import com.example.sportclub.dtos.UserCreateDto;
 import com.example.sportclub.dtos.UserGetDto;
 import com.example.sportclub.entities.UserEntity;
 import com.example.sportclub.services.UserService;

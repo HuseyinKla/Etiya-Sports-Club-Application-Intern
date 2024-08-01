@@ -28,7 +28,7 @@ public class UserEntity {
     @JoinColumn(name = "course_bundle_id", nullable = false)
     private CourseBundleEntity courseBundle;*/
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_role_id", nullable = false)
     private RoleEntity role;
 

@@ -14,7 +14,7 @@ public interface IUserGetMapper {
     IUserGetMapper INSTANCE = Mappers.getMapper(IUserGetMapper.class);
 
 
-    @Mapping(source = "role.user_role_id", target = "user_role_id")
+    @Mapping(source = "role.role_name", target = "role_name")
     UserGetDto userToUserGetDto(UserEntity user);
     List<UserGetDto> userToUsersGetDto(List<UserEntity> users);
 }

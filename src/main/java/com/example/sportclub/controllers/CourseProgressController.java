@@ -1,5 +1,6 @@
 package com.example.sportclub.controllers;
 
+import com.example.sportclub.dtos.CourseProgressDto;
 import com.example.sportclub.entities.CourseProgressEntity;
 import com.example.sportclub.services.CourseProgressService;
 import org.springframework.web.bind.annotation.*;
@@ -17,13 +18,13 @@ public class CourseProgressController {
     }
 
     @GetMapping
-    public List<CourseProgressEntity> getAllProgress(){
-        return courseProgressService.getAllProgress();
+    public List<CourseProgressDto> getAllProgressDto(){
+        return courseProgressService.getAllProgressDto();
     }
 
     @GetMapping("/{progressId}")
-    public CourseProgressEntity getOneProgress(@PathVariable Long progressId){
-        return courseProgressService.getOneProgress(progressId);
+    public CourseProgressDto getOneProgressDto(@PathVariable Long progressId){
+        return courseProgressService.CourseProgressDto(progressId);
     }
 
     @PostMapping

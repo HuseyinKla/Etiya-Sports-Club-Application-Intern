@@ -1,10 +1,13 @@
 package com.example.sportclub.services;
 
+import com.example.sportclub.dtos.PurchaseGetDto;
 import com.example.sportclub.entities.PurchaseEntity;
+import com.example.sportclub.mappers.IPurchaseGetMapper;
 import com.example.sportclub.repos.IPurchaseRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PurchaseService {
@@ -15,12 +18,18 @@ public class PurchaseService {
         this.purchaseRepository = purchaseRepository;
     }
 
-    public List<PurchaseEntity> getAllPurchases() {
-        return purchaseRepository.findAll();
+    public List<PurchaseGetDto> getAllPurchasesDto() {
+        List<PurchaseEntity> purchases = purchaseRepository.findAll();
+        return IPurchaseGetMapper.INSTANCE.purchasesToGetAllPurchaseDto(purchases);
     }
 
-    public PurchaseEntity findOnePurchase(Long purchaseId) {
-        return purchaseRepository.findById(purchaseId).orElse(null);
+    public PurchaseGetDto findOnePurchaseDto(Long purchaseId) {
+        Optional<PurchaseEntity> optionalPurchase = purchaseRepository.findById(purchaseId);
+        if(optionalPurchase.isPresent()){
+            return IPurchaseGetMapper.INSTANCE.purchaseToGetPurchaseDto(optionalPurchase.get());
+        }else{
+            throw new RuntimeException("Purchase not found");
+        }
     }
 
     public PurchaseEntity createPurchase(PurchaseEntity newPurchase) {

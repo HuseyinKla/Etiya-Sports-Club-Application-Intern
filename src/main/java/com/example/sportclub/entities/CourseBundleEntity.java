@@ -18,7 +18,7 @@ public class CourseBundleEntity {
     /*@OneToMany(mappedBy = "courseBundle")
     private Set<UserEntity> users;*/
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;
 

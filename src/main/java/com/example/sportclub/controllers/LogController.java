@@ -1,5 +1,6 @@
 package com.example.sportclub.controllers;
 
+import com.example.sportclub.dtos.LogGetDto;
 import com.example.sportclub.entities.LogEntity;
 import com.example.sportclub.services.LogService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +20,20 @@ public class LogController {
     }
 
     @GetMapping
-    public List<LogEntity> getAllLogs(){
-        return logService.getAllLogs();
+    public List<LogGetDto> getAllLogsDto(){
+        return logService.getAllLogsDto();
     }
+
+    @GetMapping("/{logId}")
+    public LogGetDto findOneLogDto(@PathVariable Long logId){
+        return logService.findOneLogDto(logId);
+    }
+
+    /*@GetMapping("/{user_id}")
+    public List<LogGetDto> findLogDtobyUserId(@PathVariable Long user_id){
+        return logService.findLogDtobyUserId(user_id);
+    }*/
+
 
     @PostMapping
     public LogEntity createNewLog(@RequestBody LogEntity newLog){

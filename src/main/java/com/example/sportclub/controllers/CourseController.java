@@ -1,6 +1,7 @@
 package com.example.sportclub.controllers;
 
 
+import com.example.sportclub.dtos.CourseGetDto;
 import com.example.sportclub.entities.CourseEntity;
 import com.example.sportclub.services.CourseService;
 import org.springframework.web.bind.annotation.*;
@@ -18,13 +19,13 @@ public class CourseController {
     }
 
     @GetMapping
-    public List<CourseEntity> getAllCourses(){
-        return courseService.getAllCourses();
+    public List<CourseGetDto> getAllCoursesDto(){
+        return courseService.getAllCoursesDto();
     }
 
     @GetMapping("/{courseId}")
-    public CourseEntity getOneCourse(@PathVariable Long courseId){
-        return courseService.getOneCourse(courseId);
+    public CourseGetDto getOneCourseDto(@PathVariable Long courseId){
+        return courseService.getOneCourseDto(courseId);
     }
 
     @PostMapping
